@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "nume_memb_fami", catalog = "asipeca")
 public class NumeMembFami implements java.io.Serializable {
 
+	private static final long serialVersionUID = 6021541367846831405L;
 	private Long numeMembFamiId;
 	private String dscr;
 	private Short limiInfe;

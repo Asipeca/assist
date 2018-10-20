@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "iden_inte", catalog = "asipeca")
 public class IdenInte implements java.io.Serializable {
 
+	private static final long serialVersionUID = -4354494209350036926L;
 	private Long idenInteId;
 	private String dscr;
 	private Date criaEm;
@@ -33,8 +34,7 @@ public class IdenInte implements java.io.Serializable {
 	public IdenInte() {
 	}
 
-	public IdenInte(String dscr, Date criaEm, Long criaPo, Date alteEm,
-			Long altePo, Set<AssiIdenInte> assiIdenIntes) {
+	public IdenInte(String dscr, Date criaEm, Long criaPo, Date alteEm, Long altePo, Set<AssiIdenInte> assiIdenIntes) {
 		this.dscr = dscr;
 		this.criaEm = criaEm;
 		this.criaPo = criaPo;

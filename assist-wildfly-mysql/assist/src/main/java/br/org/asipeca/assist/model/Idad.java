@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "idad", catalog = "asipeca")
 public class Idad implements java.io.Serializable {
 
+	private static final long serialVersionUID = 8082345342486139284L;
 	private Long idadId;
 	private String dscr;
 	private Short limiInfe;

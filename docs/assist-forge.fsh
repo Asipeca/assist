@@ -17,4 +17,3 @@ You'll need to change the --driver-location to something like this T:/Java/mysql
  
 faces-setup
 scaffold-generate --provider Faces --targets br.org.asipeca.assist.model.*
-as-setup --server wildfly  --version 13.0.0.Final

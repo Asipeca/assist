@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "pato_asso", catalog = "asipeca")
 public class PatoAsso implements java.io.Serializable {
 
+	private static final long serialVersionUID = 3366601448901245810L;
 	private Long patoAssoId;
 	private String dscr;
 	private Date criaEm;
@@ -33,8 +34,7 @@ public class PatoAsso implements java.io.Serializable {
 	public PatoAsso() {
 	}
 
-	public PatoAsso(String dscr, Date criaEm, Long criaPo, Date alteEm,
-			Long altePo, Set<AssiPatoAsso> assiPatoAssos) {
+	public PatoAsso(String dscr, Date criaEm, Long criaPo, Date alteEm, Long altePo, Set<AssiPatoAsso> assiPatoAssos) {
 		this.dscr = dscr;
 		this.criaEm = criaEm;
 		this.criaPo = criaPo;

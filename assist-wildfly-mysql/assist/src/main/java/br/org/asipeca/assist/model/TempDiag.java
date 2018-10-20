@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name = "temp_diag", catalog = "asipeca")
 public class TempDiag implements java.io.Serializable {
 
+	private static final long serialVersionUID = 8607187054304027438L;
 	private Long tempDiagId;
 	private String dscr;
 	private Short limiInfe;
@@ -30,8 +31,7 @@ public class TempDiag implements java.io.Serializable {
 	public TempDiag() {
 	}
 
-	public TempDiag(String dscr, Short limiInfe, Short limiSupe, Date criaEm,
-			Long criaPo, Date alteEm, Long altePo) {
+	public TempDiag(String dscr, Short limiInfe, Short limiSupe, Date criaEm, Long criaPo, Date alteEm, Long altePo) {
 		this.dscr = dscr;
 		this.limiInfe = limiInfe;
 		this.limiSupe = limiSupe;

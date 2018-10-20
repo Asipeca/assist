@@ -22,20 +22,20 @@ import javax.persistence.TemporalType;
 @Table(name = "vinc_rede_apoi", catalog = "asipeca")
 public class VincRedeApoi implements java.io.Serializable {
 
+	private static final long serialVersionUID = 8263638622973538523L;
 	private Long vincRedeApoiId;
 	private String dscr;
 	private Date criaEm;
 	private Long criaPo;
 	private Date alteEm;
 	private Long altePo;
-	private Set<AssiVincRedeApoi> assiVincRedeApois = new HashSet<AssiVincRedeApoi>(
-			0);
+	private Set<AssiVincRedeApoi> assiVincRedeApois = new HashSet<AssiVincRedeApoi>(0);
 
 	public VincRedeApoi() {
 	}
 
-	public VincRedeApoi(String dscr, Date criaEm, Long criaPo, Date alteEm,
-			Long altePo, Set<AssiVincRedeApoi> assiVincRedeApois) {
+	public VincRedeApoi(String dscr, Date criaEm, Long criaPo, Date alteEm, Long altePo,
+			Set<AssiVincRedeApoi> assiVincRedeApois) {
 		this.dscr = dscr;
 		this.criaEm = criaEm;
 		this.criaPo = criaPo;

@@ -59,9 +59,6 @@ public class AssiBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * Support creating and retrieving Assi entities
-	 */
 
 	private Long id;
 
@@ -135,8 +132,7 @@ public class AssiBean implements Serializable {
 				return "view?faces-redirect=true&id=" + this.assi.getAssiId();
 			}
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 			return null;
 		}
 	}
@@ -170,73 +166,63 @@ public class AssiBean implements Serializable {
 			situSaud.getAssis().remove(deletableEntity);
 			deletableEntity.setSituSaud(null);
 			this.entityManager.merge(situSaud);
-			Iterator<AssiVincRedeApoi> iterAssiVincRedeApois = deletableEntity
-					.getAssiVincRedeApois().iterator();
+			Iterator<AssiVincRedeApoi> iterAssiVincRedeApois = deletableEntity.getAssiVincRedeApois().iterator();
 			for (; iterAssiVincRedeApois.hasNext();) {
-				AssiVincRedeApoi nextInAssiVincRedeApois = iterAssiVincRedeApois
-						.next();
+				AssiVincRedeApoi nextInAssiVincRedeApois = iterAssiVincRedeApois.next();
 				nextInAssiVincRedeApois.setAssi(null);
 				iterAssiVincRedeApois.remove();
 				this.entityManager.merge(nextInAssiVincRedeApois);
 			}
-			Iterator<AssiIdenInte> iterAssiIdenIntes = deletableEntity
-					.getAssiIdenIntes().iterator();
+			Iterator<AssiIdenInte> iterAssiIdenIntes = deletableEntity.getAssiIdenIntes().iterator();
 			for (; iterAssiIdenIntes.hasNext();) {
 				AssiIdenInte nextInAssiIdenIntes = iterAssiIdenIntes.next();
 				nextInAssiIdenIntes.setAssi(null);
 				iterAssiIdenIntes.remove();
 				this.entityManager.merge(nextInAssiIdenIntes);
 			}
-			Iterator<AssiInteSaud> iterAssiInteSauds = deletableEntity
-					.getAssiInteSauds().iterator();
+			Iterator<AssiInteSaud> iterAssiInteSauds = deletableEntity.getAssiInteSauds().iterator();
 			for (; iterAssiInteSauds.hasNext();) {
 				AssiInteSaud nextInAssiInteSauds = iterAssiInteSauds.next();
 				nextInAssiInteSauds.setAssi(null);
 				iterAssiInteSauds.remove();
 				this.entityManager.merge(nextInAssiInteSauds);
 			}
-			Iterator<AssiPatoAsso> iterAssiPatoAssos = deletableEntity
-					.getAssiPatoAssos().iterator();
+			Iterator<AssiPatoAsso> iterAssiPatoAssos = deletableEntity.getAssiPatoAssos().iterator();
 			for (; iterAssiPatoAssos.hasNext();) {
 				AssiPatoAsso nextInAssiPatoAssos = iterAssiPatoAssos.next();
 				nextInAssiPatoAssos.setAssi(null);
 				iterAssiPatoAssos.remove();
 				this.entityManager.merge(nextInAssiPatoAssos);
 			}
-			Iterator<AssiHabiSaud> iterAssiHabiSauds = deletableEntity
-					.getAssiHabiSauds().iterator();
+			Iterator<AssiHabiSaud> iterAssiHabiSauds = deletableEntity.getAssiHabiSauds().iterator();
 			for (; iterAssiHabiSauds.hasNext();) {
 				AssiHabiSaud nextInAssiHabiSauds = iterAssiHabiSauds.next();
 				nextInAssiHabiSauds.setAssi(null);
 				iterAssiHabiSauds.remove();
 				this.entityManager.merge(nextInAssiHabiSauds);
 			}
-			Iterator<AssiIdenAten> iterAssiIdenAtens = deletableEntity
-					.getAssiIdenAtens().iterator();
+			Iterator<AssiIdenAten> iterAssiIdenAtens = deletableEntity.getAssiIdenAtens().iterator();
 			for (; iterAssiIdenAtens.hasNext();) {
 				AssiIdenAten nextInAssiIdenAtens = iterAssiIdenAtens.next();
 				nextInAssiIdenAtens.setAssi(null);
 				iterAssiIdenAtens.remove();
 				this.entityManager.merge(nextInAssiIdenAtens);
 			}
-			Iterator<AssiSituSaud> iterAssiSituSauds = deletableEntity
-					.getAssiSituSauds().iterator();
+			Iterator<AssiSituSaud> iterAssiSituSauds = deletableEntity.getAssiSituSauds().iterator();
 			for (; iterAssiSituSauds.hasNext();) {
 				AssiSituSaud nextInAssiSituSauds = iterAssiSituSauds.next();
 				nextInAssiSituSauds.setAssi(null);
 				iterAssiSituSauds.remove();
 				this.entityManager.merge(nextInAssiSituSauds);
 			}
-			Iterator<AssiHistFami> iterAssiHistFamis = deletableEntity
-					.getAssiHistFamis().iterator();
+			Iterator<AssiHistFami> iterAssiHistFamis = deletableEntity.getAssiHistFamis().iterator();
 			for (; iterAssiHistFamis.hasNext();) {
 				AssiHistFami nextInAssiHistFamis = iterAssiHistFamis.next();
 				nextInAssiHistFamis.setAssi(null);
 				iterAssiHistFamis.remove();
 				this.entityManager.merge(nextInAssiHistFamis);
 			}
-			Iterator<AssiTipoCanc> iterAssiTipoCancs = deletableEntity
-					.getAssiTipoCancs().iterator();
+			Iterator<AssiTipoCanc> iterAssiTipoCancs = deletableEntity.getAssiTipoCancs().iterator();
 			for (; iterAssiTipoCancs.hasNext();) {
 				AssiTipoCanc nextInAssiTipoCancs = iterAssiTipoCancs.next();
 				nextInAssiTipoCancs.setAssi(null);
@@ -247,8 +233,7 @@ public class AssiBean implements Serializable {
 			this.entityManager.flush();
 			return "search?faces-redirect=true";
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 			return null;
 		}
 	}
@@ -296,19 +281,15 @@ public class AssiBean implements Serializable {
 
 		CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
 		Root<Assi> root = countCriteria.from(Assi.class);
-		countCriteria = countCriteria.select(builder.count(root)).where(
-				getSearchPredicates(root));
-		this.count = this.entityManager.createQuery(countCriteria)
-				.getSingleResult();
+		countCriteria = countCriteria.select(builder.count(root)).where(getSearchPredicates(root));
+		this.count = this.entityManager.createQuery(countCriteria).getSingleResult();
 
 		// Populate this.pageItems
 
 		CriteriaQuery<Assi> criteria = builder.createQuery(Assi.class);
 		root = criteria.from(Assi.class);
-		TypedQuery<Assi> query = this.entityManager.createQuery(criteria
-				.select(root).where(getSearchPredicates(root)));
-		query.setFirstResult(this.page * getPageSize()).setMaxResults(
-				getPageSize());
+		TypedQuery<Assi> query = this.entityManager.createQuery(criteria.select(root).where(getSearchPredicates(root)));
+		query.setFirstResult(this.page * getPageSize()).setMaxResults(getPageSize());
 		this.pageItems = query.getResultList();
 	}
 
@@ -356,10 +337,8 @@ public class AssiBean implements Serializable {
 
 	public List<Assi> getAll() {
 
-		CriteriaQuery<Assi> criteria = this.entityManager.getCriteriaBuilder()
-				.createQuery(Assi.class);
-		return this.entityManager.createQuery(
-				criteria.select(criteria.from(Assi.class))).getResultList();
+		CriteriaQuery<Assi> criteria = this.entityManager.getCriteriaBuilder().createQuery(Assi.class);
+		return this.entityManager.createQuery(criteria.select(criteria.from(Assi.class))).getResultList();
 	}
 
 	@Resource
@@ -367,21 +346,18 @@ public class AssiBean implements Serializable {
 
 	public Converter getConverter() {
 
-		final AssiBean ejbProxy = this.sessionContext
-				.getBusinessObject(AssiBean.class);
+		final AssiBean ejbProxy = this.sessionContext.getBusinessObject(AssiBean.class);
 
 		return new Converter() {
 
 			@Override
-			public Object getAsObject(FacesContext context,
-					UIComponent component, String value) {
+			public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
 				return ejbProxy.findById(Long.valueOf(value));
 			}
 
 			@Override
-			public String getAsString(FacesContext context,
-					UIComponent component, Object value) {
+			public String getAsString(FacesContext context, UIComponent component, Object value) {
 
 				if (value == null) {
 					return "";

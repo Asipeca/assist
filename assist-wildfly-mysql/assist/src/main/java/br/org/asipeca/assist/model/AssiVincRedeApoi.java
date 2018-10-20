@@ -20,9 +20,13 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "assi_vinc_rede_apoi", catalog = "asipeca", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"assi_id", "vinc_rede_apoi_id"}))
+		"assi_id", "vinc_rede_apoi_id" }))
 public class AssiVincRedeApoi implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1793394225851465645L;
 	private Long assiVincRedeApoiId;
 	private Assi assi;
 	private VincRedeApoi vincRedeApoi;
@@ -38,8 +42,8 @@ public class AssiVincRedeApoi implements java.io.Serializable {
 		this.assi = assi;
 		this.vincRedeApoi = vincRedeApoi;
 	}
-	public AssiVincRedeApoi(Assi assi, VincRedeApoi vincRedeApoi, Date criaEm,
-			Long criaPo, Date alteEm, Long altePo) {
+
+	public AssiVincRedeApoi(Assi assi, VincRedeApoi vincRedeApoi, Date criaEm, Long criaPo, Date alteEm, Long altePo) {
 		this.assi = assi;
 		this.vincRedeApoi = vincRedeApoi;
 		this.criaEm = criaEm;

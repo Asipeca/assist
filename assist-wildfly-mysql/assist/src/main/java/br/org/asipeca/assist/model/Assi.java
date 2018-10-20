@@ -25,6 +25,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "assi", catalog = "asipeca", uniqueConstraints = @UniqueConstraint(columnNames = "cpf"))
 public class Assi implements java.io.Serializable {
 
+	private static final long serialVersionUID = -1597716660885975677L;
 	private Long assiId;
 	private Esco esco;
 	private FaseEsta faseEsta;
@@ -47,8 +48,7 @@ public class Assi implements java.io.Serializable {
 	private Long criaPo;
 	private Date alteEm;
 	private Long altePo;
-	private Set<AssiVincRedeApoi> assiVincRedeApois = new HashSet<AssiVincRedeApoi>(
-			0);
+	private Set<AssiVincRedeApoi> assiVincRedeApois = new HashSet<AssiVincRedeApoi>(0);
 	private Set<AssiIdenInte> assiIdenIntes = new HashSet<AssiIdenInte>(0);
 	private Set<AssiInteSaud> assiInteSauds = new HashSet<AssiInteSaud>(0);
 	private Set<AssiPatoAsso> assiPatoAssos = new HashSet<AssiPatoAsso>(0);
@@ -64,16 +64,14 @@ public class Assi implements java.io.Serializable {
 	public Assi(String nome) {
 		this.nome = nome;
 	}
-	public Assi(Esco esco, FaseEsta faseEsta, RendMens rendMens,
-			SituMora situMora, SituOcup situOcup, SituSaud situSaud,
-			String nome, Date nasc, String gene, String tipoCada, String rg,
-			String nis, String sus, Long cpf, Boolean numeMembFami,
-			Date dataDiag, Boolean famiPart, Date criaEm, Long criaPo,
-			Date alteEm, Long altePo, Set<AssiVincRedeApoi> assiVincRedeApois,
-			Set<AssiIdenInte> assiIdenIntes, Set<AssiInteSaud> assiInteSauds,
-			Set<AssiPatoAsso> assiPatoAssos, Set<AssiHabiSaud> assiHabiSauds,
-			Set<AssiIdenAten> assiIdenAtens, Set<AssiSituSaud> assiSituSauds,
-			Set<AssiHistFami> assiHistFamis, Set<AssiTipoCanc> assiTipoCancs) {
+
+	public Assi(Esco esco, FaseEsta faseEsta, RendMens rendMens, SituMora situMora, SituOcup situOcup,
+			SituSaud situSaud, String nome, Date nasc, String gene, String tipoCada, String rg, String nis, String sus,
+			Long cpf, Boolean numeMembFami, Date dataDiag, Boolean famiPart, Date criaEm, Long criaPo, Date alteEm,
+			Long altePo, Set<AssiVincRedeApoi> assiVincRedeApois, Set<AssiIdenInte> assiIdenIntes,
+			Set<AssiInteSaud> assiInteSauds, Set<AssiPatoAsso> assiPatoAssos, Set<AssiHabiSaud> assiHabiSauds,
+			Set<AssiIdenAten> assiIdenAtens, Set<AssiSituSaud> assiSituSauds, Set<AssiHistFami> assiHistFamis,
+			Set<AssiTipoCanc> assiTipoCancs) {
 		this.esco = esco;
 		this.faseEsta = faseEsta;
 		this.rendMens = rendMens;
