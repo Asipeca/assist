@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiHabiSaudBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiHabiSaudBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi Habi Saud entities"/>
+
+	<ui:define name="header">
+		Assi Habi Saud
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi Habi Saud entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiHabiSaudBeanExampleAssi" value="Assi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{assiBean.converter}" id="assiHabiSaudBeanExampleAssi" value="#{assiHabiSaudBean.example.assi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiHabiSaudBeanExampleAssi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiHabiSaudBeanExampleHabiSaud" value="Habi Saud:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{habiSaudBean.converter}" id="assiHabiSaudBeanExampleHabiSaud" value="#{assiHabiSaudBean.example.habiSaud}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{habiSaudBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiHabiSaudBeanExampleHabiSaud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiHabiSaudBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiHabiSaudBeanExampleCriaPo" value="#{assiHabiSaudBean.example.criaPo}"/>
+							<h:message for="assiHabiSaudBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiHabiSaudBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiHabiSaudBeanExampleAltePo" value="#{assiHabiSaudBean.example.altePo}"/>
+							<h:message for="assiHabiSaudBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiHabiSaudBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiHabiSaudBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiHabiSaudBeanPageItems" styleClass="data-table" value="#{assiHabiSaudBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Habi Saud"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemHabiSaud" value="#{_item.habiSaud}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiHabiSaudBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

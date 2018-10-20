@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiVincRedeApoiBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiVincRedeApoiBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi Vinc Rede Apoi entities"/>
+
+	<ui:define name="header">
+		Assi Vinc Rede Apoi
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi Vinc Rede Apoi entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiVincRedeApoiBeanExampleAssi" value="Assi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{assiBean.converter}" id="assiVincRedeApoiBeanExampleAssi" value="#{assiVincRedeApoiBean.example.assi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiVincRedeApoiBeanExampleAssi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiVincRedeApoiBeanExampleVincRedeApoi" value="Vinc Rede Apoi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{vincRedeApoiBean.converter}" id="assiVincRedeApoiBeanExampleVincRedeApoi" value="#{assiVincRedeApoiBean.example.vincRedeApoi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{vincRedeApoiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiVincRedeApoiBeanExampleVincRedeApoi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiVincRedeApoiBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiVincRedeApoiBeanExampleCriaPo" value="#{assiVincRedeApoiBean.example.criaPo}"/>
+							<h:message for="assiVincRedeApoiBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiVincRedeApoiBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiVincRedeApoiBeanExampleAltePo" value="#{assiVincRedeApoiBean.example.altePo}"/>
+							<h:message for="assiVincRedeApoiBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiVincRedeApoiBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiVincRedeApoiBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiVincRedeApoiBeanPageItems" styleClass="data-table" value="#{assiVincRedeApoiBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Vinc Rede Apoi"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemVincRedeApoi" value="#{_item.vincRedeApoi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiVincRedeApoiBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

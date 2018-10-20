@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{inteSaudBean.id}'/>
+		<f:event type="preRenderView" listener='#{inteSaudBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Inte Saud"/>
+
+	<ui:define name="header">
+		Inte Saud
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Inte Saud
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="inteSaudBeanInteSaudDscr" value="Dscr:"/>
+			<h:outputText id="inteSaudBeanInteSaudDscr" value="#{inteSaudBean.inteSaud.dscr}"/>
+			<h:outputText/>
+			<h:outputLabel for="inteSaudBeanInteSaudCriaEm" value="Cria Em:"/>
+			<h:outputText id="inteSaudBeanInteSaudCriaEm" value="#{inteSaudBean.inteSaud.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="inteSaudBeanInteSaudCriaPo" value="Cria Po:"/>
+			<h:outputText id="inteSaudBeanInteSaudCriaPo" value="#{inteSaudBean.inteSaud.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="inteSaudBeanInteSaudAlteEm" value="Alte Em:"/>
+			<h:outputText id="inteSaudBeanInteSaudAlteEm" value="#{inteSaudBean.inteSaud.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="inteSaudBeanInteSaudAltePo" value="Alte Po:"/>
+			<h:outputText id="inteSaudBeanInteSaudAltePo" value="#{inteSaudBean.inteSaud.altePo}"/>
+			<h:outputText/>
+			<h:outputLabel for="inteSaudBeanInteSaudAssiInteSauds" value="Assi Inte Sauds:"/>
+			<h:dataTable id="inteSaudBeanInteSaudAssiInteSauds" styleClass="data-table" value="#{forgeview:asList(inteSaudBean.inteSaud.assiInteSauds)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

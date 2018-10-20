@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>#{empty pageTitle ? 'Page Title' : pageTitle}</title>
+	<link rel="icon" href='#{resource["favicon.ico"]}' />
+	<h:outputStylesheet name="bootstrap.css" />
+	<h:outputStylesheet name="forge-style.css" />
+</h:head>
+
+<h:body>
+	<ui:debug rendered="#{facesContext.application.projectStage == 'Development'}" />
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<h:link id="brandLink" outcome="/index.xhtml" styleClass="brand">
+					<h:outputText value="Welcome to " rendered=" #{request.userPrincipal !=null} "/>
+                    Assist
+                    <h:outputText value=",  #{request.userPrincipal.name}" rendered="#{request.userPrincipal !=null} "/>
+				</h:link>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="http://forge.jboss.org/document/hands-on-lab">How to Customize</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container forgecontainer">
+		<div id="navigation">
+			<h:link id="homeLink" outcome="/index.xhtml">
+				<h:graphicImage value='#{resource["forge-logo.png"]}' alt="Forge... get hammered" border="0" />	
+			</h:link>
+			<ul>
+				<li>
+					<h:link outcome="/assi/search" value="Assi"/>
+				</li>
+				<li>
+					<h:link outcome="/assiHabiSaud/search" value="Assi Habi Saud"/>
+				</li>
+				<li>
+					<h:link outcome="/assiHistFami/search" value="Assi Hist Fami"/>
+				</li>
+				<li>
+					<h:link outcome="/assiIdenAten/search" value="Assi Iden Aten"/>
+				</li>
+				<li>
+					<h:link outcome="/assiIdenInte/search" value="Assi Iden Inte"/>
+				</li>
+				<li>
+					<h:link outcome="/assiInteSaud/search" value="Assi Inte Saud"/>
+				</li>
+				<li>
+					<h:link outcome="/assiPatoAsso/search" value="Assi Pato Asso"/>
+				</li>
+				<li>
+					<h:link outcome="/assiSituSaud/search" value="Assi Situ Saud"/>
+				</li>
+				<li>
+					<h:link outcome="/assiTipoCanc/search" value="Assi Tipo Canc"/>
+				</li>
+				<li>
+					<h:link outcome="/assiVincRedeApoi/search" value="Assi Vinc Rede Apoi"/>
+				</li>
+				<li>
+					<h:link outcome="/esco/search" value="Esco"/>
+				</li>
+				<li>
+					<h:link outcome="/faseEsta/search" value="Fase Esta"/>
+				</li>
+				<li>
+					<h:link outcome="/habiSaud/search" value="Habi Saud"/>
+				</li>
+				<li>
+					<h:link outcome="/histFami/search" value="Hist Fami"/>
+				</li>
+				<li>
+					<h:link outcome="/idad/search" value="Idad"/>
+				</li>
+				<li>
+					<h:link outcome="/idenAten/search" value="Iden Aten"/>
+				</li>
+				<li>
+					<h:link outcome="/idenInte/search" value="Iden Inte"/>
+				</li>
+				<li>
+					<h:link outcome="/inteSaud/search" value="Inte Saud"/>
+				</li>
+				<li>
+					<h:link outcome="/numeMembFami/search" value="Nume Memb Fami"/>
+				</li>
+				<li>
+					<h:link outcome="/patoAsso/search" value="Pato Asso"/>
+				</li>
+				<li>
+					<h:link outcome="/rendMens/search" value="Rend Mens"/>
+				</li>
+				<li>
+					<h:link outcome="/situMora/search" value="Situ Mora"/>
+				</li>
+				<li>
+					<h:link outcome="/situOcup/search" value="Situ Ocup"/>
+				</li>
+				<li>
+					<h:link outcome="/situSaud/search" value="Situ Saud"/>
+				</li>
+				<li>
+					<h:link outcome="/tempDiag/search" value="Temp Diag"/>
+				</li>
+				<li>
+					<h:link outcome="/tipoCanc/search" value="Tipo Canc"/>
+				</li>
+				<li>
+					<h:link outcome="/vincRedeApoi/search" value="Vinc Rede Apoi"/>
+				</li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<h1>
+				<ui:insert name="header" />
+			</h1>
+			<h2>
+				<ui:insert name="subheader" />
+			</h2>
+
+			<ui:insert name="main" />
+		</div>
+	</div>
+
+	<footer>
+		<div id="footer-wrapper">
+	    	<p>Powered by <a href="http://jboss.org/forge">Forge</a></p>
+	    </div>
+	</footer>
+
+</h:body>
+</html>

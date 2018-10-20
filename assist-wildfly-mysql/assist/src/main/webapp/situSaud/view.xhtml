@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{situSaudBean.id}'/>
+		<f:event type="preRenderView" listener='#{situSaudBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Situ Saud"/>
+
+	<ui:define name="header">
+		Situ Saud
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Situ Saud
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="situSaudBeanSituSaudDscr" value="Dscr:"/>
+			<h:outputText id="situSaudBeanSituSaudDscr" value="#{situSaudBean.situSaud.dscr}"/>
+			<h:outputText/>
+			<h:outputLabel for="situSaudBeanSituSaudCriaEm" value="Cria Em:"/>
+			<h:outputText id="situSaudBeanSituSaudCriaEm" value="#{situSaudBean.situSaud.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="situSaudBeanSituSaudCriaPo" value="Cria Po:"/>
+			<h:outputText id="situSaudBeanSituSaudCriaPo" value="#{situSaudBean.situSaud.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="situSaudBeanSituSaudAlteEm" value="Alte Em:"/>
+			<h:outputText id="situSaudBeanSituSaudAlteEm" value="#{situSaudBean.situSaud.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="situSaudBeanSituSaudAltePo" value="Alte Po:"/>
+			<h:outputText id="situSaudBeanSituSaudAltePo" value="#{situSaudBean.situSaud.altePo}"/>
+			<h:outputText/>
+			<h:outputLabel for="situSaudBeanSituSaudAssiSituSauds" value="Assi Situ Sauds:"/>
+			<h:dataTable id="situSaudBeanSituSaudAssiSituSauds" styleClass="data-table" value="#{forgeview:asList(situSaudBean.situSaud.assiSituSauds)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="situSaudBeanSituSaudAssis" value="Assis:"/>
+			<h:dataTable id="situSaudBeanSituSaudAssis" styleClass="data-table" value="#{forgeview:asList(situSaudBean.situSaud.assis)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/assi/view">
+						<f:param name="id" value="#{_item.assiId}"/>
+						<h:outputText id="_itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

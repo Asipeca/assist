@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiIdenInteBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiIdenInteBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi Iden Inte entities"/>
+
+	<ui:define name="header">
+		Assi Iden Inte
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi Iden Inte entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiIdenInteBeanExampleAssi" value="Assi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{assiBean.converter}" id="assiIdenInteBeanExampleAssi" value="#{assiIdenInteBean.example.assi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiIdenInteBeanExampleAssi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiIdenInteBeanExampleIdenInte" value="Iden Inte:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{idenInteBean.converter}" id="assiIdenInteBeanExampleIdenInte" value="#{assiIdenInteBean.example.idenInte}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{idenInteBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiIdenInteBeanExampleIdenInte" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiIdenInteBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiIdenInteBeanExampleCriaPo" value="#{assiIdenInteBean.example.criaPo}"/>
+							<h:message for="assiIdenInteBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiIdenInteBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiIdenInteBeanExampleAltePo" value="#{assiIdenInteBean.example.altePo}"/>
+							<h:message for="assiIdenInteBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiIdenInteBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiIdenInteBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiIdenInteBeanPageItems" styleClass="data-table" value="#{assiIdenInteBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Iden Inte"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemIdenInte" value="#{_item.idenInte}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiIdenInteBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

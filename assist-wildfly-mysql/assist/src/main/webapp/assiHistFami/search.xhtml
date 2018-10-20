@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiHistFamiBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiHistFamiBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi Hist Fami entities"/>
+
+	<ui:define name="header">
+		Assi Hist Fami
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi Hist Fami entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiHistFamiBeanExampleAssi" value="Assi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{assiBean.converter}" id="assiHistFamiBeanExampleAssi" value="#{assiHistFamiBean.example.assi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiHistFamiBeanExampleAssi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiHistFamiBeanExampleHistFami" value="Hist Fami:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{histFamiBean.converter}" id="assiHistFamiBeanExampleHistFami" value="#{assiHistFamiBean.example.histFami}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{histFamiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiHistFamiBeanExampleHistFami" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiHistFamiBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiHistFamiBeanExampleCriaPo" value="#{assiHistFamiBean.example.criaPo}"/>
+							<h:message for="assiHistFamiBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiHistFamiBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiHistFamiBeanExampleAltePo" value="#{assiHistFamiBean.example.altePo}"/>
+							<h:message for="assiHistFamiBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiHistFamiBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiHistFamiBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiHistFamiBeanPageItems" styleClass="data-table" value="#{assiHistFamiBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Hist Fami"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemHistFami" value="#{_item.histFami}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiHistFamiBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

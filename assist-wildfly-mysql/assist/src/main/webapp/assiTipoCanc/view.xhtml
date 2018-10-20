@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiTipoCancBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiTipoCancBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Assi Tipo Canc"/>
+
+	<ui:define name="header">
+		Assi Tipo Canc
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Assi Tipo Canc
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="assiTipoCancBeanAssiTipoCancAssi" value="Assi:"/>
+			<h:link id="assiTipoCancBeanAssiTipoCancAssi" outcome="/assi/view" rendered="#{!empty assiTipoCancBean.assiTipoCanc.assi}" value="#{assiTipoCancBean.assiTipoCanc.assi}">
+				<f:param name="id" value="#{assiTipoCancBean.assiTipoCanc.assi.assiId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiTipoCancBeanAssiTipoCancTipoCanc" value="Tipo Canc:"/>
+			<h:link id="assiTipoCancBeanAssiTipoCancTipoCanc" outcome="/tipoCanc/view" rendered="#{!empty assiTipoCancBean.assiTipoCanc.tipoCanc}" value="#{assiTipoCancBean.assiTipoCanc.tipoCanc}">
+				<f:param name="id" value="#{assiTipoCancBean.assiTipoCanc.tipoCanc.tipoCancId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiTipoCancBeanAssiTipoCancCriaEm" value="Cria Em:"/>
+			<h:outputText id="assiTipoCancBeanAssiTipoCancCriaEm" value="#{assiTipoCancBean.assiTipoCanc.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiTipoCancBeanAssiTipoCancCriaPo" value="Cria Po:"/>
+			<h:outputText id="assiTipoCancBeanAssiTipoCancCriaPo" value="#{assiTipoCancBean.assiTipoCanc.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiTipoCancBeanAssiTipoCancAlteEm" value="Alte Em:"/>
+			<h:outputText id="assiTipoCancBeanAssiTipoCancAlteEm" value="#{assiTipoCancBean.assiTipoCanc.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiTipoCancBeanAssiTipoCancAltePo" value="Alte Po:"/>
+			<h:outputText id="assiTipoCancBeanAssiTipoCancAltePo" value="#{assiTipoCancBean.assiTipoCanc.altePo}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

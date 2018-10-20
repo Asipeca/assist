@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{rendMensBean.id}'/>
+		<f:event type="preRenderView" listener='#{rendMensBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Rend Mens"/>
+
+	<ui:define name="header">
+		Rend Mens
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Rend Mens
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="rendMensBeanRendMensDscr" value="Dscr:"/>
+			<h:outputText id="rendMensBeanRendMensDscr" value="#{rendMensBean.rendMens.dscr}"/>
+			<h:outputText/>
+			<h:outputLabel for="rendMensBeanRendMensCriaEm" value="Cria Em:"/>
+			<h:outputText id="rendMensBeanRendMensCriaEm" value="#{rendMensBean.rendMens.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="rendMensBeanRendMensCriaPo" value="Cria Po:"/>
+			<h:outputText id="rendMensBeanRendMensCriaPo" value="#{rendMensBean.rendMens.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="rendMensBeanRendMensAlteEm" value="Alte Em:"/>
+			<h:outputText id="rendMensBeanRendMensAlteEm" value="#{rendMensBean.rendMens.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="rendMensBeanRendMensAltePo" value="Alte Po:"/>
+			<h:outputText id="rendMensBeanRendMensAltePo" value="#{rendMensBean.rendMens.altePo}"/>
+			<h:outputText/>
+			<h:outputLabel for="rendMensBeanRendMensAssis" value="Assis:"/>
+			<h:dataTable id="rendMensBeanRendMensAssis" styleClass="data-table" value="#{forgeview:asList(rendMensBean.rendMens.assis)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/assi/view">
+						<f:param name="id" value="#{_item.assiId}"/>
+						<h:outputText id="_itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

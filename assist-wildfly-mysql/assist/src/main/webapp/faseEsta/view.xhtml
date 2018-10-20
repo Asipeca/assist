@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{faseEstaBean.id}'/>
+		<f:event type="preRenderView" listener='#{faseEstaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Fase Esta"/>
+
+	<ui:define name="header">
+		Fase Esta
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Fase Esta
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="faseEstaBeanFaseEstaDscr" value="Dscr:"/>
+			<h:outputText id="faseEstaBeanFaseEstaDscr" value="#{faseEstaBean.faseEsta.dscr}"/>
+			<h:outputText/>
+			<h:outputLabel for="faseEstaBeanFaseEstaCriaEm" value="Cria Em:"/>
+			<h:outputText id="faseEstaBeanFaseEstaCriaEm" value="#{faseEstaBean.faseEsta.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="faseEstaBeanFaseEstaCriaPo" value="Cria Po:"/>
+			<h:outputText id="faseEstaBeanFaseEstaCriaPo" value="#{faseEstaBean.faseEsta.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="faseEstaBeanFaseEstaAlteEm" value="Alte Em:"/>
+			<h:outputText id="faseEstaBeanFaseEstaAlteEm" value="#{faseEstaBean.faseEsta.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="faseEstaBeanFaseEstaAltePo" value="Alte Po:"/>
+			<h:outputText id="faseEstaBeanFaseEstaAltePo" value="#{faseEstaBean.faseEsta.altePo}"/>
+			<h:outputText/>
+			<h:outputLabel for="faseEstaBeanFaseEstaAssis" value="Assis:"/>
+			<h:dataTable id="faseEstaBeanFaseEstaAssis" styleClass="data-table" value="#{forgeview:asList(faseEstaBean.faseEsta.assis)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/assi/view">
+						<f:param name="id" value="#{_item.assiId}"/>
+						<h:outputText id="_itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

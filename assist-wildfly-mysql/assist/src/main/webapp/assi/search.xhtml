@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi entities"/>
+
+	<ui:define name="header">
+		Assi
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiBeanExampleEsco" value="Esco:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{escoBean.converter}" id="assiBeanExampleEsco" value="#{assiBean.example.esco}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{escoBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiBeanExampleEsco" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiBeanExampleFaseEsta" value="Fase Esta:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{faseEstaBean.converter}" id="assiBeanExampleFaseEsta" value="#{assiBean.example.faseEsta}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{faseEstaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiBeanExampleFaseEsta" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiBeanExampleRendMens" value="Rend Mens:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{rendMensBean.converter}" id="assiBeanExampleRendMens" value="#{assiBean.example.rendMens}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{rendMensBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiBeanExampleRendMens" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiBeanExampleSituMora" value="Situ Mora:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{situMoraBean.converter}" id="assiBeanExampleSituMora" value="#{assiBean.example.situMora}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{situMoraBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiBeanExampleSituMora" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiBeanExampleSituOcup" value="Situ Ocup:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{situOcupBean.converter}" id="assiBeanExampleSituOcup" value="#{assiBean.example.situOcup}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{situOcupBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiBeanExampleSituOcup" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiBeanPageItems" styleClass="data-table" value="#{assiBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/assi/view">
+						<f:param name="id" value="#{_item.assiId}"/>
+						<h:outputText id="_itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

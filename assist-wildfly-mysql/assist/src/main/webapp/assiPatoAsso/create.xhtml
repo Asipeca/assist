@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiPatoAssoBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiPatoAssoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Assi Pato Asso"/>
+
+	<ui:define name="header">
+		Assi Pato Asso
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty assiPatoAssoBean.id}'>
+				Edit existing Assi Pato Asso
+			</c:when>
+			<c:otherwise>
+				Create a new Assi Pato Asso
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="assiPatoAssoBeanAssiPatoAssoAssi" value="Assi:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{assiBean.converter}" id="assiPatoAssoBeanAssiPatoAssoAssi" value="#{assiPatoAssoBean.assiPatoAsso.assi}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiPatoAssoBeanAssiPatoAssoAssi" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiPatoAssoBeanAssiPatoAssoPatoAsso" value="Pato Asso:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{patoAssoBean.converter}" id="assiPatoAssoBeanAssiPatoAssoPatoAsso" value="#{assiPatoAssoBean.assiPatoAsso.patoAsso}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{patoAssoBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiPatoAssoBeanAssiPatoAssoPatoAsso" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiPatoAssoBeanAssiPatoAssoCriaEm" value="Cria Em:"/>
+				<h:panelGroup>
+					<h:inputText id="assiPatoAssoBeanAssiPatoAssoCriaEm" maxLength="26" value="#{assiPatoAssoBean.assiPatoAsso.criaEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiPatoAssoBeanAssiPatoAssoCriaEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiPatoAssoBeanAssiPatoAssoCriaPo" value="Cria Po:"/>
+				<h:panelGroup>
+					<h:inputText id="assiPatoAssoBeanAssiPatoAssoCriaPo" value="#{assiPatoAssoBean.assiPatoAsso.criaPo}"/>
+					<h:message for="assiPatoAssoBeanAssiPatoAssoCriaPo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiPatoAssoBeanAssiPatoAssoAlteEm" value="Alte Em:"/>
+				<h:panelGroup>
+					<h:inputText id="assiPatoAssoBeanAssiPatoAssoAlteEm" maxLength="26" value="#{assiPatoAssoBean.assiPatoAsso.alteEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiPatoAssoBeanAssiPatoAssoAlteEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiPatoAssoBeanAssiPatoAssoAltePo" value="Alte Po:"/>
+				<h:panelGroup>
+					<h:inputText id="assiPatoAssoBeanAssiPatoAssoAltePo" value="#{assiPatoAssoBean.assiPatoAsso.altePo}"/>
+					<h:message for="assiPatoAssoBeanAssiPatoAssoAltePo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{assiPatoAssoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty assiPatoAssoBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{assiPatoAssoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{assiPatoAssoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{situMoraBean.id}'/>
+		<f:event type="preRenderView" listener='#{situMoraBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Situ Mora"/>
+
+	<ui:define name="header">
+		Situ Mora
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Situ Mora
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="situMoraBeanSituMoraDscr" value="Dscr:"/>
+			<h:outputText id="situMoraBeanSituMoraDscr" value="#{situMoraBean.situMora.dscr}"/>
+			<h:outputText/>
+			<h:outputLabel for="situMoraBeanSituMoraCriaEm" value="Cria Em:"/>
+			<h:outputText id="situMoraBeanSituMoraCriaEm" value="#{situMoraBean.situMora.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="situMoraBeanSituMoraCriaPo" value="Cria Po:"/>
+			<h:outputText id="situMoraBeanSituMoraCriaPo" value="#{situMoraBean.situMora.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="situMoraBeanSituMoraAlteEm" value="Alte Em:"/>
+			<h:outputText id="situMoraBeanSituMoraAlteEm" value="#{situMoraBean.situMora.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="situMoraBeanSituMoraAltePo" value="Alte Po:"/>
+			<h:outputText id="situMoraBeanSituMoraAltePo" value="#{situMoraBean.situMora.altePo}"/>
+			<h:outputText/>
+			<h:outputLabel for="situMoraBeanSituMoraAssis" value="Assis:"/>
+			<h:dataTable id="situMoraBeanSituMoraAssis" styleClass="data-table" value="#{forgeview:asList(situMoraBean.situMora.assis)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/assi/view">
+						<f:param name="id" value="#{_item.assiId}"/>
+						<h:outputText id="_itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

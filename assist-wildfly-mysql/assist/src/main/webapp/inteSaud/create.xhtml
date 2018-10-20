@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{inteSaudBean.id}'/>
+		<f:event type="preRenderView" listener='#{inteSaudBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Inte Saud"/>
+
+	<ui:define name="header">
+		Inte Saud
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty inteSaudBean.id}'>
+				Edit existing Inte Saud
+			</c:when>
+			<c:otherwise>
+				Create a new Inte Saud
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="inteSaudBeanInteSaudDscr" value="Dscr:"/>
+				<h:panelGroup>
+					<h:inputText id="inteSaudBeanInteSaudDscr" maxLength="30" value="#{inteSaudBean.inteSaud.dscr}"/>
+					<h:message for="inteSaudBeanInteSaudDscr" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="inteSaudBeanInteSaudCriaEm" value="Cria Em:"/>
+				<h:panelGroup>
+					<h:inputText id="inteSaudBeanInteSaudCriaEm" maxLength="26" value="#{inteSaudBean.inteSaud.criaEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="inteSaudBeanInteSaudCriaEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="inteSaudBeanInteSaudCriaPo" value="Cria Po:"/>
+				<h:panelGroup>
+					<h:inputText id="inteSaudBeanInteSaudCriaPo" value="#{inteSaudBean.inteSaud.criaPo}"/>
+					<h:message for="inteSaudBeanInteSaudCriaPo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="inteSaudBeanInteSaudAlteEm" value="Alte Em:"/>
+				<h:panelGroup>
+					<h:inputText id="inteSaudBeanInteSaudAlteEm" maxLength="26" value="#{inteSaudBean.inteSaud.alteEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="inteSaudBeanInteSaudAlteEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="inteSaudBeanInteSaudAltePo" value="Alte Po:"/>
+				<h:panelGroup>
+					<h:inputText id="inteSaudBeanInteSaudAltePo" value="#{inteSaudBean.inteSaud.altePo}"/>
+					<h:message for="inteSaudBeanInteSaudAltePo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="inteSaudBeanInteSaudAssiInteSauds" value="Assi Inte Sauds:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{inteSaudBean.inteSaud.assiInteSauds}"/>
+					<h:dataTable id="inteSaudBeanInteSaudAssiInteSauds" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Assi"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{assiBean.converter}" id="assiInteSaudBeanAddAssi" value="#{assiInteSaudBean.add.assi}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiInteSaudBeanAddAssi" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddCriaEm" maxLength="26" value="#{assiInteSaudBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiInteSaudBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddCriaPo" value="#{assiInteSaudBean.add.criaPo}"/>
+								<h:message for="assiInteSaudBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddAlteEm" maxLength="26" value="#{assiInteSaudBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiInteSaudBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddAltePo" value="#{assiInteSaudBean.add.altePo}"/>
+								<h:message for="assiInteSaudBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiInteSaudBean.added)}" id="inteSaudBeanInteSaudAssiInteSaudsAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiInteSaudBean.add.inteSaud}" value="#{inteSaudBean.inteSaud}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{inteSaudBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty inteSaudBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{inteSaudBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{inteSaudBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

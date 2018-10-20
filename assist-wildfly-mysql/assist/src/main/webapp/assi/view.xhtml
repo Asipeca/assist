@@ -1,0 +1,598 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Assi"/>
+
+	<ui:define name="header">
+		Assi
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Assi
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="assiBeanAssiEsco" value="Esco:"/>
+			<h:link id="assiBeanAssiEsco" outcome="/esco/view" rendered="#{!empty assiBean.assi.esco}" value="#{assiBean.assi.esco}">
+				<f:param name="id" value="#{assiBean.assi.esco.escoId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiFaseEsta" value="Fase Esta:"/>
+			<h:link id="assiBeanAssiFaseEsta" outcome="/faseEsta/view" rendered="#{!empty assiBean.assi.faseEsta}" value="#{assiBean.assi.faseEsta}">
+				<f:param name="id" value="#{assiBean.assi.faseEsta.faseEstaId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiRendMens" value="Rend Mens:"/>
+			<h:link id="assiBeanAssiRendMens" outcome="/rendMens/view" rendered="#{!empty assiBean.assi.rendMens}" value="#{assiBean.assi.rendMens}">
+				<f:param name="id" value="#{assiBean.assi.rendMens.rendMensId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiSituMora" value="Situ Mora:"/>
+			<h:link id="assiBeanAssiSituMora" outcome="/situMora/view" rendered="#{!empty assiBean.assi.situMora}" value="#{assiBean.assi.situMora}">
+				<f:param name="id" value="#{assiBean.assi.situMora.situMoraId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiSituOcup" value="Situ Ocup:"/>
+			<h:link id="assiBeanAssiSituOcup" outcome="/situOcup/view" rendered="#{!empty assiBean.assi.situOcup}" value="#{assiBean.assi.situOcup}">
+				<f:param name="id" value="#{assiBean.assi.situOcup.situOcupId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiSituSaud" value="Situ Saud:"/>
+			<h:link id="assiBeanAssiSituSaud" outcome="/situSaud/view" rendered="#{!empty assiBean.assi.situSaud}" value="#{assiBean.assi.situSaud}">
+				<f:param name="id" value="#{assiBean.assi.situSaud.situSaudId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiNome" value="Nome:"/>
+			<h:outputText id="assiBeanAssiNome" value="#{assiBean.assi.nome}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiNasc" value="Nasc:"/>
+			<h:outputText id="assiBeanAssiNasc" value="#{assiBean.assi.nasc}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiGene" value="Gene:"/>
+			<h:outputText id="assiBeanAssiGene" value="#{assiBean.assi.gene}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiTipoCada" value="Tipo Cada:"/>
+			<h:outputText id="assiBeanAssiTipoCada" value="#{assiBean.assi.tipoCada}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiRg" value="Rg:"/>
+			<h:outputText id="assiBeanAssiRg" value="#{assiBean.assi.rg}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiNis" value="Nis:"/>
+			<h:outputText id="assiBeanAssiNis" value="#{assiBean.assi.nis}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiSus" value="Sus:"/>
+			<h:outputText id="assiBeanAssiSus" value="#{assiBean.assi.sus}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiCpf" value="Cpf:"/>
+			<h:outputText id="assiBeanAssiCpf" value="#{assiBean.assi.cpf}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiNumeMembFami" value="Nume Memb Fami:"/>
+			<h:outputText id="assiBeanAssiNumeMembFami" value="#{assiBean.assi.numeMembFami}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiDataDiag" value="Data Diag:"/>
+			<h:outputText id="assiBeanAssiDataDiag" value="#{assiBean.assi.dataDiag}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiFamiPart" value="Fami Part:"/>
+			<h:outputText id="assiBeanAssiFamiPart" value="#{assiBean.assi.famiPart}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiCriaEm" value="Cria Em:"/>
+			<h:outputText id="assiBeanAssiCriaEm" value="#{assiBean.assi.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiCriaPo" value="Cria Po:"/>
+			<h:outputText id="assiBeanAssiCriaPo" value="#{assiBean.assi.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAlteEm" value="Alte Em:"/>
+			<h:outputText id="assiBeanAssiAlteEm" value="#{assiBean.assi.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAltePo" value="Alte Po:"/>
+			<h:outputText id="assiBeanAssiAltePo" value="#{assiBean.assi.altePo}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiVincRedeApois" value="Assi Vinc Rede Apois:"/>
+			<h:dataTable id="assiBeanAssiAssiVincRedeApois" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiVincRedeApois)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Vinc Rede Apoi"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemVincRedeApoi" value="#{_item.vincRedeApoi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiVincRedeApoi/view">
+						<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiIdenIntes" value="Assi Iden Intes:"/>
+			<h:dataTable id="assiBeanAssiAssiIdenIntes" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiIdenIntes)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Iden Inte"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemIdenInte" value="#{_item.idenInte}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiIdenInte/view">
+						<f:param name="id" value="#{_item.assiIdenInteId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiInteSauds" value="Assi Inte Sauds:"/>
+			<h:dataTable id="assiBeanAssiAssiInteSauds" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiInteSauds)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Inte Saud"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemInteSaud" value="#{_item.inteSaud}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiPatoAssos" value="Assi Pato Assos:"/>
+			<h:dataTable id="assiBeanAssiAssiPatoAssos" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiPatoAssos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Pato Asso"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemPatoAsso" value="#{_item.patoAsso}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiHabiSauds" value="Assi Habi Sauds:"/>
+			<h:dataTable id="assiBeanAssiAssiHabiSauds" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiHabiSauds)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Habi Saud"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemHabiSaud" value="#{_item.habiSaud}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiHabiSaud/view">
+						<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiIdenAtens" value="Assi Iden Atens:"/>
+			<h:dataTable id="assiBeanAssiAssiIdenAtens" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiIdenAtens)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Iden Aten"/>
+					</f:facet>
+					<h:link outcome="/assiIdenAten/view">
+						<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+						<h:outputText id="_itemIdenAten" value="#{_item.idenAten}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiIdenAten/view">
+						<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiIdenAten/view">
+						<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiIdenAten/view">
+						<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiIdenAten/view">
+						<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiSituSauds" value="Assi Situ Sauds:"/>
+			<h:dataTable id="assiBeanAssiAssiSituSauds" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiSituSauds)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Situ Saud"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemSituSaud" value="#{_item.situSaud}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiSituSaud/view">
+						<f:param name="id" value="#{_item.assiSituSaudId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiHistFamis" value="Assi Hist Famis:"/>
+			<h:dataTable id="assiBeanAssiAssiHistFamis" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiHistFamis)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Hist Fami"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemHistFami" value="#{_item.histFami}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiHistFami/view">
+						<f:param name="id" value="#{_item.assiHistFamiId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="assiBeanAssiAssiTipoCancs" value="Assi Tipo Cancs:"/>
+			<h:dataTable id="assiBeanAssiAssiTipoCancs" styleClass="data-table" value="#{forgeview:asList(assiBean.assi.assiTipoCancs)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Canc"/>
+					</f:facet>
+					<h:link outcome="/assiTipoCanc/view">
+						<f:param name="id" value="#{_item.assiTipoCancId}"/>
+						<h:outputText id="_itemTipoCanc" value="#{_item.tipoCanc}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiTipoCanc/view">
+						<f:param name="id" value="#{_item.assiTipoCancId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiTipoCanc/view">
+						<f:param name="id" value="#{_item.assiTipoCancId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiTipoCanc/view">
+						<f:param name="id" value="#{_item.assiTipoCancId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/assiTipoCanc/view">
+						<f:param name="id" value="#{_item.assiTipoCancId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

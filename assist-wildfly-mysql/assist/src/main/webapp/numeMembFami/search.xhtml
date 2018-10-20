@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{numeMembFamiBean.page}'/>
+		<f:event type="preRenderView" listener='#{numeMembFamiBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Nume Memb Fami entities"/>
+
+	<ui:define name="header">
+		Nume Memb Fami
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Nume Memb Fami entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="numeMembFamiBeanExampleDscr" value="Dscr:"/>
+						<h:panelGroup>
+							<h:inputText id="numeMembFamiBeanExampleDscr" maxLength="30" value="#{numeMembFamiBean.example.dscr}"/>
+							<h:message for="numeMembFamiBeanExampleDscr" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="numeMembFamiBeanExampleLimiInfe" value="Limi Infe:"/>
+						<h:panelGroup>
+							<h:inputText id="numeMembFamiBeanExampleLimiInfe" value="#{numeMembFamiBean.example.limiInfe}"/>
+							<h:message for="numeMembFamiBeanExampleLimiInfe" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="numeMembFamiBeanExampleLimiSupe" value="Limi Supe:"/>
+						<h:panelGroup>
+							<h:inputText id="numeMembFamiBeanExampleLimiSupe" value="#{numeMembFamiBean.example.limiSupe}"/>
+							<h:message for="numeMembFamiBeanExampleLimiSupe" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{numeMembFamiBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{numeMembFamiBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="numeMembFamiBeanPageItems" styleClass="data-table" value="#{numeMembFamiBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Dscr"/>
+					</f:facet>
+					<h:link outcome="/numeMembFami/view">
+						<f:param name="id" value="#{_item.numeMembFamiId}"/>
+						<h:outputText id="_itemDscr" value="#{_item.dscr}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Limi Infe"/>
+					</f:facet>
+					<h:link outcome="/numeMembFami/view">
+						<f:param name="id" value="#{_item.numeMembFamiId}"/>
+						<h:outputText id="_itemLimiInfe" value="#{_item.limiInfe}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Limi Supe"/>
+					</f:facet>
+					<h:link outcome="/numeMembFami/view">
+						<f:param name="id" value="#{_item.numeMembFamiId}"/>
+						<h:outputText id="_itemLimiSupe" value="#{_item.limiSupe}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{numeMembFamiBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

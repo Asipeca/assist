@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiInteSaudBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiInteSaudBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi Inte Saud entities"/>
+
+	<ui:define name="header">
+		Assi Inte Saud
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi Inte Saud entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiInteSaudBeanExampleAssi" value="Assi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{assiBean.converter}" id="assiInteSaudBeanExampleAssi" value="#{assiInteSaudBean.example.assi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiInteSaudBeanExampleAssi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiInteSaudBeanExampleInteSaud" value="Inte Saud:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{inteSaudBean.converter}" id="assiInteSaudBeanExampleInteSaud" value="#{assiInteSaudBean.example.inteSaud}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{inteSaudBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiInteSaudBeanExampleInteSaud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiInteSaudBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiInteSaudBeanExampleCriaPo" value="#{assiInteSaudBean.example.criaPo}"/>
+							<h:message for="assiInteSaudBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiInteSaudBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiInteSaudBeanExampleAltePo" value="#{assiInteSaudBean.example.altePo}"/>
+							<h:message for="assiInteSaudBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiInteSaudBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiInteSaudBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiInteSaudBeanPageItems" styleClass="data-table" value="#{assiInteSaudBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Inte Saud"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemInteSaud" value="#{_item.inteSaud}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiInteSaud/view">
+						<f:param name="id" value="#{_item.assiInteSaudId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiInteSaudBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

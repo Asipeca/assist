@@ -1,0 +1,1038 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Assi"/>
+
+	<ui:define name="header">
+		Assi
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty assiBean.id}'>
+				Edit existing Assi
+			</c:when>
+			<c:otherwise>
+				Create a new Assi
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="assiBeanAssiEsco" value="Esco:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{escoBean.converter}" id="assiBeanAssiEsco" value="#{assiBean.assi.esco}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{escoBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiEsco" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiFaseEsta" value="Fase Esta:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{faseEstaBean.converter}" id="assiBeanAssiFaseEsta" value="#{assiBean.assi.faseEsta}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{faseEstaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiFaseEsta" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiRendMens" value="Rend Mens:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{rendMensBean.converter}" id="assiBeanAssiRendMens" value="#{assiBean.assi.rendMens}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{rendMensBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiRendMens" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiSituMora" value="Situ Mora:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{situMoraBean.converter}" id="assiBeanAssiSituMora" value="#{assiBean.assi.situMora}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{situMoraBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiSituMora" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiSituOcup" value="Situ Ocup:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{situOcupBean.converter}" id="assiBeanAssiSituOcup" value="#{assiBean.assi.situOcup}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{situOcupBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiSituOcup" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiSituSaud" value="Situ Saud:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{situSaudBean.converter}" id="assiBeanAssiSituSaud" value="#{assiBean.assi.situSaud}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{situSaudBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiSituSaud" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiNome" value="Nome:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiNome" required="true" value="#{assiBean.assi.nome}"/>
+					<h:message for="assiBeanAssiNome" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="assiBeanAssiNasc" value="Nasc:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiNasc" maxLength="10" value="#{assiBean.assi.nasc}">
+						<f:convertDateTime type="date"/>
+					</h:inputText>
+					<h:message for="assiBeanAssiNasc" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiGene" value="Gene:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiGene" maxLength="9" value="#{assiBean.assi.gene}"/>
+					<h:message for="assiBeanAssiGene" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiTipoCada" value="Tipo Cada:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiTipoCada" maxLength="21" value="#{assiBean.assi.tipoCada}"/>
+					<h:message for="assiBeanAssiTipoCada" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiRg" value="Rg:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiRg" maxLength="9" value="#{assiBean.assi.rg}"/>
+					<h:message for="assiBeanAssiRg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiNis" value="Nis:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiNis" maxLength="50" value="#{assiBean.assi.nis}"/>
+					<h:message for="assiBeanAssiNis" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiSus" value="Sus:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiSus" maxLength="30" value="#{assiBean.assi.sus}"/>
+					<h:message for="assiBeanAssiSus" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiCpf" value="Cpf:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiCpf" value="#{assiBean.assi.cpf}"/>
+					<h:message for="assiBeanAssiCpf" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiNumeMembFami" value="Nume Memb Fami:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="assiBeanAssiNumeMembFami" value="#{assiBean.assi.numeMembFami}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiNumeMembFami" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiDataDiag" value="Data Diag:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiDataDiag" maxLength="26" value="#{assiBean.assi.dataDiag}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiBeanAssiDataDiag" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiFamiPart" value="Fami Part:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="assiBeanAssiFamiPart" value="#{assiBean.assi.famiPart}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="assiBeanAssiFamiPart" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiCriaEm" value="Cria Em:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiCriaEm" maxLength="26" value="#{assiBean.assi.criaEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiBeanAssiCriaEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiCriaPo" value="Cria Po:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiCriaPo" value="#{assiBean.assi.criaPo}"/>
+					<h:message for="assiBeanAssiCriaPo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAlteEm" value="Alte Em:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiAlteEm" maxLength="26" value="#{assiBean.assi.alteEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiBeanAssiAlteEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAltePo" value="Alte Po:"/>
+				<h:panelGroup>
+					<h:inputText id="assiBeanAssiAltePo" value="#{assiBean.assi.altePo}"/>
+					<h:message for="assiBeanAssiAltePo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiVincRedeApois" value="Assi Vinc Rede Apois:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiVincRedeApois}"/>
+					<h:dataTable id="assiBeanAssiAssiVincRedeApois" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Vinc Rede Apoi"/>
+							</f:facet>
+							<h:link outcome="/assiVincRedeApoi/view">
+								<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+								<h:outputText id="_itemVincRedeApoi" value="#{_item.vincRedeApoi}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{vincRedeApoiBean.converter}" id="assiVincRedeApoiBeanAddVincRedeApoi" value="#{assiVincRedeApoiBean.add.vincRedeApoi}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{vincRedeApoiBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiVincRedeApoiBeanAddVincRedeApoi" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiVincRedeApoi/view">
+								<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiVincRedeApoiBeanAddCriaEm" maxLength="26" value="#{assiVincRedeApoiBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiVincRedeApoiBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiVincRedeApoi/view">
+								<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiVincRedeApoiBeanAddCriaPo" value="#{assiVincRedeApoiBean.add.criaPo}"/>
+								<h:message for="assiVincRedeApoiBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiVincRedeApoi/view">
+								<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiVincRedeApoiBeanAddAlteEm" maxLength="26" value="#{assiVincRedeApoiBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiVincRedeApoiBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiVincRedeApoi/view">
+								<f:param name="id" value="#{_item.assiVincRedeApoiId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiVincRedeApoiBeanAddAltePo" value="#{assiVincRedeApoiBean.add.altePo}"/>
+								<h:message for="assiVincRedeApoiBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiVincRedeApoiBean.added)}" id="assiBeanAssiAssiVincRedeApoisAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiVincRedeApoiBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiIdenIntes" value="Assi Iden Intes:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiIdenIntes}"/>
+					<h:dataTable id="assiBeanAssiAssiIdenIntes" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Iden Inte"/>
+							</f:facet>
+							<h:link outcome="/assiIdenInte/view">
+								<f:param name="id" value="#{_item.assiIdenInteId}"/>
+								<h:outputText id="_itemIdenInte" value="#{_item.idenInte}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{idenInteBean.converter}" id="assiIdenInteBeanAddIdenInte" value="#{assiIdenInteBean.add.idenInte}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{idenInteBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiIdenInteBeanAddIdenInte" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiIdenInte/view">
+								<f:param name="id" value="#{_item.assiIdenInteId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenInteBeanAddCriaEm" maxLength="26" value="#{assiIdenInteBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiIdenInteBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiIdenInte/view">
+								<f:param name="id" value="#{_item.assiIdenInteId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenInteBeanAddCriaPo" value="#{assiIdenInteBean.add.criaPo}"/>
+								<h:message for="assiIdenInteBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiIdenInte/view">
+								<f:param name="id" value="#{_item.assiIdenInteId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenInteBeanAddAlteEm" maxLength="26" value="#{assiIdenInteBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiIdenInteBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiIdenInte/view">
+								<f:param name="id" value="#{_item.assiIdenInteId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenInteBeanAddAltePo" value="#{assiIdenInteBean.add.altePo}"/>
+								<h:message for="assiIdenInteBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiIdenInteBean.added)}" id="assiBeanAssiAssiIdenIntesAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiIdenInteBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiInteSauds" value="Assi Inte Sauds:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiInteSauds}"/>
+					<h:dataTable id="assiBeanAssiAssiInteSauds" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Inte Saud"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemInteSaud" value="#{_item.inteSaud}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{inteSaudBean.converter}" id="assiInteSaudBeanAddInteSaud" value="#{assiInteSaudBean.add.inteSaud}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{inteSaudBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiInteSaudBeanAddInteSaud" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddCriaEm" maxLength="26" value="#{assiInteSaudBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiInteSaudBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddCriaPo" value="#{assiInteSaudBean.add.criaPo}"/>
+								<h:message for="assiInteSaudBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddAlteEm" maxLength="26" value="#{assiInteSaudBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiInteSaudBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiInteSaud/view">
+								<f:param name="id" value="#{_item.assiInteSaudId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiInteSaudBeanAddAltePo" value="#{assiInteSaudBean.add.altePo}"/>
+								<h:message for="assiInteSaudBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiInteSaudBean.added)}" id="assiBeanAssiAssiInteSaudsAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiInteSaudBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiPatoAssos" value="Assi Pato Assos:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiPatoAssos}"/>
+					<h:dataTable id="assiBeanAssiAssiPatoAssos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Pato Asso"/>
+							</f:facet>
+							<h:link outcome="/assiPatoAsso/view">
+								<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+								<h:outputText id="_itemPatoAsso" value="#{_item.patoAsso}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{patoAssoBean.converter}" id="assiPatoAssoBeanAddPatoAsso" value="#{assiPatoAssoBean.add.patoAsso}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{patoAssoBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiPatoAssoBeanAddPatoAsso" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiPatoAsso/view">
+								<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiPatoAssoBeanAddCriaEm" maxLength="26" value="#{assiPatoAssoBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiPatoAssoBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiPatoAsso/view">
+								<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiPatoAssoBeanAddCriaPo" value="#{assiPatoAssoBean.add.criaPo}"/>
+								<h:message for="assiPatoAssoBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiPatoAsso/view">
+								<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiPatoAssoBeanAddAlteEm" maxLength="26" value="#{assiPatoAssoBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiPatoAssoBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiPatoAsso/view">
+								<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiPatoAssoBeanAddAltePo" value="#{assiPatoAssoBean.add.altePo}"/>
+								<h:message for="assiPatoAssoBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiPatoAssoBean.added)}" id="assiBeanAssiAssiPatoAssosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiPatoAssoBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiHabiSauds" value="Assi Habi Sauds:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiHabiSauds}"/>
+					<h:dataTable id="assiBeanAssiAssiHabiSauds" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Habi Saud"/>
+							</f:facet>
+							<h:link outcome="/assiHabiSaud/view">
+								<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+								<h:outputText id="_itemHabiSaud" value="#{_item.habiSaud}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{habiSaudBean.converter}" id="assiHabiSaudBeanAddHabiSaud" value="#{assiHabiSaudBean.add.habiSaud}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{habiSaudBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiHabiSaudBeanAddHabiSaud" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiHabiSaud/view">
+								<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHabiSaudBeanAddCriaEm" maxLength="26" value="#{assiHabiSaudBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiHabiSaudBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiHabiSaud/view">
+								<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHabiSaudBeanAddCriaPo" value="#{assiHabiSaudBean.add.criaPo}"/>
+								<h:message for="assiHabiSaudBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiHabiSaud/view">
+								<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHabiSaudBeanAddAlteEm" maxLength="26" value="#{assiHabiSaudBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiHabiSaudBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiHabiSaud/view">
+								<f:param name="id" value="#{_item.assiHabiSaudId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHabiSaudBeanAddAltePo" value="#{assiHabiSaudBean.add.altePo}"/>
+								<h:message for="assiHabiSaudBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiHabiSaudBean.added)}" id="assiBeanAssiAssiHabiSaudsAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiHabiSaudBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiIdenAtens" value="Assi Iden Atens:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiIdenAtens}"/>
+					<h:dataTable id="assiBeanAssiAssiIdenAtens" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Iden Aten"/>
+							</f:facet>
+							<h:link outcome="/assiIdenAten/view">
+								<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+								<h:outputText id="_itemIdenAten" value="#{_item.idenAten}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{idenAtenBean.converter}" id="assiIdenAtenBeanAddIdenAten" value="#{assiIdenAtenBean.add.idenAten}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{idenAtenBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiIdenAtenBeanAddIdenAten" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiIdenAten/view">
+								<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenAtenBeanAddCriaEm" maxLength="26" value="#{assiIdenAtenBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiIdenAtenBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiIdenAten/view">
+								<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenAtenBeanAddCriaPo" value="#{assiIdenAtenBean.add.criaPo}"/>
+								<h:message for="assiIdenAtenBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiIdenAten/view">
+								<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenAtenBeanAddAlteEm" maxLength="26" value="#{assiIdenAtenBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiIdenAtenBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiIdenAten/view">
+								<f:param name="id" value="#{_item.assiIdenAtenId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiIdenAtenBeanAddAltePo" value="#{assiIdenAtenBean.add.altePo}"/>
+								<h:message for="assiIdenAtenBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiIdenAtenBean.added)}" id="assiBeanAssiAssiIdenAtensAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiIdenAtenBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiSituSauds" value="Assi Situ Sauds:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiSituSauds}"/>
+					<h:dataTable id="assiBeanAssiAssiSituSauds" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Situ Saud"/>
+							</f:facet>
+							<h:link outcome="/assiSituSaud/view">
+								<f:param name="id" value="#{_item.assiSituSaudId}"/>
+								<h:outputText id="_itemSituSaud" value="#{_item.situSaud}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{situSaudBean.converter}" id="assiSituSaudBeanAddSituSaud" value="#{assiSituSaudBean.add.situSaud}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{situSaudBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiSituSaudBeanAddSituSaud" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiSituSaud/view">
+								<f:param name="id" value="#{_item.assiSituSaudId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiSituSaudBeanAddCriaEm" maxLength="26" value="#{assiSituSaudBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiSituSaudBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiSituSaud/view">
+								<f:param name="id" value="#{_item.assiSituSaudId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiSituSaudBeanAddCriaPo" value="#{assiSituSaudBean.add.criaPo}"/>
+								<h:message for="assiSituSaudBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiSituSaud/view">
+								<f:param name="id" value="#{_item.assiSituSaudId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiSituSaudBeanAddAlteEm" maxLength="26" value="#{assiSituSaudBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiSituSaudBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiSituSaud/view">
+								<f:param name="id" value="#{_item.assiSituSaudId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiSituSaudBeanAddAltePo" value="#{assiSituSaudBean.add.altePo}"/>
+								<h:message for="assiSituSaudBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiSituSaudBean.added)}" id="assiBeanAssiAssiSituSaudsAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiSituSaudBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiHistFamis" value="Assi Hist Famis:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiHistFamis}"/>
+					<h:dataTable id="assiBeanAssiAssiHistFamis" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Hist Fami"/>
+							</f:facet>
+							<h:link outcome="/assiHistFami/view">
+								<f:param name="id" value="#{_item.assiHistFamiId}"/>
+								<h:outputText id="_itemHistFami" value="#{_item.histFami}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{histFamiBean.converter}" id="assiHistFamiBeanAddHistFami" value="#{assiHistFamiBean.add.histFami}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{histFamiBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiHistFamiBeanAddHistFami" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiHistFami/view">
+								<f:param name="id" value="#{_item.assiHistFamiId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHistFamiBeanAddCriaEm" maxLength="26" value="#{assiHistFamiBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiHistFamiBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiHistFami/view">
+								<f:param name="id" value="#{_item.assiHistFamiId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHistFamiBeanAddCriaPo" value="#{assiHistFamiBean.add.criaPo}"/>
+								<h:message for="assiHistFamiBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiHistFami/view">
+								<f:param name="id" value="#{_item.assiHistFamiId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHistFamiBeanAddAlteEm" maxLength="26" value="#{assiHistFamiBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiHistFamiBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiHistFami/view">
+								<f:param name="id" value="#{_item.assiHistFamiId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiHistFamiBeanAddAltePo" value="#{assiHistFamiBean.add.altePo}"/>
+								<h:message for="assiHistFamiBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiHistFamiBean.added)}" id="assiBeanAssiAssiHistFamisAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiHistFamiBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiBeanAssiAssiTipoCancs" value="Assi Tipo Cancs:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{assiBean.assi.assiTipoCancs}"/>
+					<h:dataTable id="assiBeanAssiAssiTipoCancs" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo Canc"/>
+							</f:facet>
+							<h:link outcome="/assiTipoCanc/view">
+								<f:param name="id" value="#{_item.assiTipoCancId}"/>
+								<h:outputText id="_itemTipoCanc" value="#{_item.tipoCanc}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:selectOneMenu converter="#{tipoCancBean.converter}" id="assiTipoCancBeanAddTipoCanc" value="#{assiTipoCancBean.add.tipoCanc}">
+									<f:selectItem/>
+									<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoCancBean.all}" var="_item"/>
+								</h:selectOneMenu>
+								<h:message for="assiTipoCancBeanAddTipoCanc" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Em"/>
+							</f:facet>
+							<h:link outcome="/assiTipoCanc/view">
+								<f:param name="id" value="#{_item.assiTipoCancId}"/>
+								<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiTipoCancBeanAddCriaEm" maxLength="26" value="#{assiTipoCancBean.add.criaEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiTipoCancBeanAddCriaEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cria Po"/>
+							</f:facet>
+							<h:link outcome="/assiTipoCanc/view">
+								<f:param name="id" value="#{_item.assiTipoCancId}"/>
+								<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiTipoCancBeanAddCriaPo" value="#{assiTipoCancBean.add.criaPo}"/>
+								<h:message for="assiTipoCancBeanAddCriaPo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Em"/>
+							</f:facet>
+							<h:link outcome="/assiTipoCanc/view">
+								<f:param name="id" value="#{_item.assiTipoCancId}"/>
+								<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiTipoCancBeanAddAlteEm" maxLength="26" value="#{assiTipoCancBean.add.alteEm}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="assiTipoCancBeanAddAlteEm" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Alte Po"/>
+							</f:facet>
+							<h:link outcome="/assiTipoCanc/view">
+								<f:param name="id" value="#{_item.assiTipoCancId}"/>
+								<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="assiTipoCancBeanAddAltePo" value="#{assiTipoCancBean.add.altePo}"/>
+								<h:message for="assiTipoCancBeanAddAltePo" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(assiTipoCancBean.added)}" id="assiBeanAssiAssiTipoCancsAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{assiTipoCancBean.add.assi}" value="#{assiBean.assi}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{assiBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty assiBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{assiBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{assiBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{assiPatoAssoBean.page}'/>
+		<f:event type="preRenderView" listener='#{assiPatoAssoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Assi Pato Asso entities"/>
+
+	<ui:define name="header">
+		Assi Pato Asso
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Assi Pato Asso entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="assiPatoAssoBeanExampleAssi" value="Assi:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{assiBean.converter}" id="assiPatoAssoBeanExampleAssi" value="#{assiPatoAssoBean.example.assi}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiPatoAssoBeanExampleAssi" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiPatoAssoBeanExamplePatoAsso" value="Pato Asso:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{patoAssoBean.converter}" id="assiPatoAssoBeanExamplePatoAsso" value="#{assiPatoAssoBean.example.patoAsso}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{patoAssoBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="assiPatoAssoBeanExamplePatoAsso" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiPatoAssoBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiPatoAssoBeanExampleCriaPo" value="#{assiPatoAssoBean.example.criaPo}"/>
+							<h:message for="assiPatoAssoBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="assiPatoAssoBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="assiPatoAssoBeanExampleAltePo" value="#{assiPatoAssoBean.example.altePo}"/>
+							<h:message for="assiPatoAssoBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{assiPatoAssoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{assiPatoAssoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="assiPatoAssoBeanPageItems" styleClass="data-table" value="#{assiPatoAssoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Assi"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemAssi" value="#{_item.assi}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Pato Asso"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemPatoAsso" value="#{_item.patoAsso}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/assiPatoAsso/view">
+						<f:param name="id" value="#{_item.assiPatoAssoId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{assiPatoAssoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

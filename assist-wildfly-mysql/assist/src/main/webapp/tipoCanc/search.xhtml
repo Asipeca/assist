@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{tipoCancBean.page}'/>
+		<f:event type="preRenderView" listener='#{tipoCancBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Tipo Canc entities"/>
+
+	<ui:define name="header">
+		Tipo Canc
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Tipo Canc entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="tipoCancBeanExampleDscr" value="Dscr:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoCancBeanExampleDscr" maxLength="30" value="#{tipoCancBean.example.dscr}"/>
+							<h:message for="tipoCancBeanExampleDscr" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tipoCancBeanExampleCriaPo" value="Cria Po:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoCancBeanExampleCriaPo" value="#{tipoCancBean.example.criaPo}"/>
+							<h:message for="tipoCancBeanExampleCriaPo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="tipoCancBeanExampleAltePo" value="Alte Po:"/>
+						<h:panelGroup>
+							<h:inputText id="tipoCancBeanExampleAltePo" value="#{tipoCancBean.example.altePo}"/>
+							<h:message for="tipoCancBeanExampleAltePo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{tipoCancBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{tipoCancBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="tipoCancBeanPageItems" styleClass="data-table" value="#{tipoCancBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Dscr"/>
+					</f:facet>
+					<h:link outcome="/tipoCanc/view">
+						<f:param name="id" value="#{_item.tipoCancId}"/>
+						<h:outputText id="_itemDscr" value="#{_item.dscr}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Em"/>
+					</f:facet>
+					<h:link outcome="/tipoCanc/view">
+						<f:param name="id" value="#{_item.tipoCancId}"/>
+						<h:outputText id="_itemCriaEm" value="#{_item.criaEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cria Po"/>
+					</f:facet>
+					<h:link outcome="/tipoCanc/view">
+						<f:param name="id" value="#{_item.tipoCancId}"/>
+						<h:outputText id="_itemCriaPo" value="#{_item.criaPo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Em"/>
+					</f:facet>
+					<h:link outcome="/tipoCanc/view">
+						<f:param name="id" value="#{_item.tipoCancId}"/>
+						<h:outputText id="_itemAlteEm" value="#{_item.alteEm}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Alte Po"/>
+					</f:facet>
+					<h:link outcome="/tipoCanc/view">
+						<f:param name="id" value="#{_item.tipoCancId}"/>
+						<h:outputText id="_itemAltePo" value="#{_item.altePo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{tipoCancBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

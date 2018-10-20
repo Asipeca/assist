@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{idadBean.page}'/>
+		<f:event type="preRenderView" listener='#{idadBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Idad entities"/>
+
+	<ui:define name="header">
+		Idad
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Idad entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="idadBeanExampleDscr" value="Dscr:"/>
+						<h:panelGroup>
+							<h:inputText id="idadBeanExampleDscr" maxLength="30" value="#{idadBean.example.dscr}"/>
+							<h:message for="idadBeanExampleDscr" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="idadBeanExampleLimiInfe" value="Limi Infe:"/>
+						<h:panelGroup>
+							<h:inputText id="idadBeanExampleLimiInfe" value="#{idadBean.example.limiInfe}"/>
+							<h:message for="idadBeanExampleLimiInfe" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="idadBeanExampleLimiSupe" value="Limi Supe:"/>
+						<h:panelGroup>
+							<h:inputText id="idadBeanExampleLimiSupe" value="#{idadBean.example.limiSupe}"/>
+							<h:message for="idadBeanExampleLimiSupe" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{idadBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{idadBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="idadBeanPageItems" styleClass="data-table" value="#{idadBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Dscr"/>
+					</f:facet>
+					<h:link outcome="/idad/view">
+						<f:param name="id" value="#{_item.idadId}"/>
+						<h:outputText id="_itemDscr" value="#{_item.dscr}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Limi Infe"/>
+					</f:facet>
+					<h:link outcome="/idad/view">
+						<f:param name="id" value="#{_item.idadId}"/>
+						<h:outputText id="_itemLimiInfe" value="#{_item.limiInfe}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Limi Supe"/>
+					</f:facet>
+					<h:link outcome="/idad/view">
+						<f:param name="id" value="#{_item.idadId}"/>
+						<h:outputText id="_itemLimiSupe" value="#{_item.limiSupe}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{idadBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

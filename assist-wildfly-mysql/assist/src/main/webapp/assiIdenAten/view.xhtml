@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiIdenAtenBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiIdenAtenBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Assi Iden Aten"/>
+
+	<ui:define name="header">
+		Assi Iden Aten
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Assi Iden Aten
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="assiIdenAtenBeanAssiIdenAtenAssi" value="Assi:"/>
+			<h:link id="assiIdenAtenBeanAssiIdenAtenAssi" outcome="/assi/view" rendered="#{!empty assiIdenAtenBean.assiIdenAten.assi}" value="#{assiIdenAtenBean.assiIdenAten.assi}">
+				<f:param name="id" value="#{assiIdenAtenBean.assiIdenAten.assi.assiId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiIdenAtenBeanAssiIdenAtenIdenAten" value="Iden Aten:"/>
+			<h:link id="assiIdenAtenBeanAssiIdenAtenIdenAten" outcome="/idenAten/view" rendered="#{!empty assiIdenAtenBean.assiIdenAten.idenAten}" value="#{assiIdenAtenBean.assiIdenAten.idenAten}">
+				<f:param name="id" value="#{assiIdenAtenBean.assiIdenAten.idenAten.idenAtenId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiIdenAtenBeanAssiIdenAtenCriaEm" value="Cria Em:"/>
+			<h:outputText id="assiIdenAtenBeanAssiIdenAtenCriaEm" value="#{assiIdenAtenBean.assiIdenAten.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiIdenAtenBeanAssiIdenAtenCriaPo" value="Cria Po:"/>
+			<h:outputText id="assiIdenAtenBeanAssiIdenAtenCriaPo" value="#{assiIdenAtenBean.assiIdenAten.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiIdenAtenBeanAssiIdenAtenAlteEm" value="Alte Em:"/>
+			<h:outputText id="assiIdenAtenBeanAssiIdenAtenAlteEm" value="#{assiIdenAtenBean.assiIdenAten.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiIdenAtenBeanAssiIdenAtenAltePo" value="Alte Po:"/>
+			<h:outputText id="assiIdenAtenBeanAssiIdenAtenAltePo" value="#{assiIdenAtenBean.assiIdenAten.altePo}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

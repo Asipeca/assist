@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiHistFamiBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiHistFamiBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Assi Hist Fami"/>
+
+	<ui:define name="header">
+		Assi Hist Fami
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Assi Hist Fami
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="assiHistFamiBeanAssiHistFamiAssi" value="Assi:"/>
+			<h:link id="assiHistFamiBeanAssiHistFamiAssi" outcome="/assi/view" rendered="#{!empty assiHistFamiBean.assiHistFami.assi}" value="#{assiHistFamiBean.assiHistFami.assi}">
+				<f:param name="id" value="#{assiHistFamiBean.assiHistFami.assi.assiId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiHistFamiBeanAssiHistFamiHistFami" value="Hist Fami:"/>
+			<h:link id="assiHistFamiBeanAssiHistFamiHistFami" outcome="/histFami/view" rendered="#{!empty assiHistFamiBean.assiHistFami.histFami}" value="#{assiHistFamiBean.assiHistFami.histFami}">
+				<f:param name="id" value="#{assiHistFamiBean.assiHistFami.histFami.histFamiId}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="assiHistFamiBeanAssiHistFamiCriaEm" value="Cria Em:"/>
+			<h:outputText id="assiHistFamiBeanAssiHistFamiCriaEm" value="#{assiHistFamiBean.assiHistFami.criaEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiHistFamiBeanAssiHistFamiCriaPo" value="Cria Po:"/>
+			<h:outputText id="assiHistFamiBeanAssiHistFamiCriaPo" value="#{assiHistFamiBean.assiHistFami.criaPo}"/>
+			<h:outputText/>
+			<h:outputLabel for="assiHistFamiBeanAssiHistFamiAlteEm" value="Alte Em:"/>
+			<h:outputText id="assiHistFamiBeanAssiHistFamiAlteEm" value="#{assiHistFamiBean.assiHistFami.alteEm}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="assiHistFamiBeanAssiHistFamiAltePo" value="Alte Po:"/>
+			<h:outputText id="assiHistFamiBeanAssiHistFamiAltePo" value="#{assiHistFamiBean.assiHistFami.altePo}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

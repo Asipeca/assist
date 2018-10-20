@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{assiTipoCancBean.id}'/>
+		<f:event type="preRenderView" listener='#{assiTipoCancBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Assi Tipo Canc"/>
+
+	<ui:define name="header">
+		Assi Tipo Canc
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty assiTipoCancBean.id}'>
+				Edit existing Assi Tipo Canc
+			</c:when>
+			<c:otherwise>
+				Create a new Assi Tipo Canc
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="assiTipoCancBeanAssiTipoCancAssi" value="Assi:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{assiBean.converter}" id="assiTipoCancBeanAssiTipoCancAssi" value="#{assiTipoCancBean.assiTipoCanc.assi}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{assiBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiTipoCancBeanAssiTipoCancAssi" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiTipoCancBeanAssiTipoCancTipoCanc" value="Tipo Canc:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{tipoCancBean.converter}" id="assiTipoCancBeanAssiTipoCancTipoCanc" value="#{assiTipoCancBean.assiTipoCanc.tipoCanc}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoCancBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="assiTipoCancBeanAssiTipoCancTipoCanc" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiTipoCancBeanAssiTipoCancCriaEm" value="Cria Em:"/>
+				<h:panelGroup>
+					<h:inputText id="assiTipoCancBeanAssiTipoCancCriaEm" maxLength="26" value="#{assiTipoCancBean.assiTipoCanc.criaEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiTipoCancBeanAssiTipoCancCriaEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiTipoCancBeanAssiTipoCancCriaPo" value="Cria Po:"/>
+				<h:panelGroup>
+					<h:inputText id="assiTipoCancBeanAssiTipoCancCriaPo" value="#{assiTipoCancBean.assiTipoCanc.criaPo}"/>
+					<h:message for="assiTipoCancBeanAssiTipoCancCriaPo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiTipoCancBeanAssiTipoCancAlteEm" value="Alte Em:"/>
+				<h:panelGroup>
+					<h:inputText id="assiTipoCancBeanAssiTipoCancAlteEm" maxLength="26" value="#{assiTipoCancBean.assiTipoCanc.alteEm}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="assiTipoCancBeanAssiTipoCancAlteEm" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="assiTipoCancBeanAssiTipoCancAltePo" value="Alte Po:"/>
+				<h:panelGroup>
+					<h:inputText id="assiTipoCancBeanAssiTipoCancAltePo" value="#{assiTipoCancBean.assiTipoCanc.altePo}"/>
+					<h:message for="assiTipoCancBeanAssiTipoCancAltePo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{assiTipoCancBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty assiTipoCancBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{assiTipoCancBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{assiTipoCancBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
